@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # College Event Management Ticketing System
 
 Simple C-based ticketing system for college events.
@@ -29,3 +30,23 @@ Add a license file if you want to make this project open source.
 
 ## Notes
 - This README was added automatically. Update it with build instructions, dependencies, and usage examples as you develop the project further.
+=======
+C Application
+======================
+This is a simple C application. This application serves as a basic template for a console application using C.
+
+What does this application do?
+-------------------------------
+This application prints "Hello, World!" to the console.
+
+# How to run?
+You can run the application in one of the following ways:
+
+1. Open a terminal by going to 'View' -> 'Terminal'. Then run:
+    > `gcc main.c`
+    > `./a.out`
+
+This will start the application.
+
+Happy coding! 🙂
+>>>>>>> f132cdc (Added College Event Management & Ticketing System project with event booking, seat allocation, cancellation, and revenue tracking features.)
