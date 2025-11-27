@@ -5,7 +5,7 @@
 static void wait_push(Event *e, Attendee a) {
     WaitNode n = (WaitNode)malloc(sizeof(WaitNode));
     if (!n) { fprintf(stderr, "Out of memory\n"); exit(1); }
-    a.seatNumber = -1;                 // on waitlist
+    a.seatNumber = -1;                 
     n->data = a;
     n->next = NULL;
     if (!e->waitTail) e->waitHead = e->waitTail = n;
