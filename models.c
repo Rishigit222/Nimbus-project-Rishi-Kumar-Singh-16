@@ -26,16 +26,13 @@ static double price_of(const Event *e, int t) {
     if (t < 0 || t >= e->numTicketTypes) return 0.0;
     return e->ticketTypes[t].price;
 }
-
-/* -------- API -------- */
-
 void init_event(Event *e, const char *name, const char *date, const char *venue, int capacity) {
     strncpy(e->name, name, MAX_NAME-1); e->name[MAX_NAME-1]=0;
     strncpy(e->date, date, MAX_DATE-1); e->date[MAX_DATE-1]=0;
     strncpy(e->venue, venue, MAX_VENUE-1); e->venue[MAX_VENUE-1]=0;
 
     e->capacity = capacity;
-    e->seats = (Attendee*)calloc(capacity, sizeof(Attendee)); // all bookingId=0 (empty)
+    e->seats = (Attendee*)calloc(capacity, sizeof(Attendee));
     if (!e->seats) { fprintf(stderr, "Out of memory\n"); exit(1); }
 
     e->numTicketTypes = 0;
@@ -60,7 +57,6 @@ void add_ticket_type(Event *e, const char *name, double price) {
 void free_event(Event *e) {
     free(e->seats);
     e->seats = NULL;
-    // free waitlist
     WaitNode *cur = e->waitHead;
     while (cur) { WaitNode *nx = cur->next; free(cur); cur = nx; }
     e->waitHead = e->waitTail = NULL;
