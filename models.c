@@ -72,7 +72,7 @@ bool book_ticket(Event *e, const char *custName, const char *email, int ticketTy
         return false;
     }
 
-    // prepare attendee
+  
     Attendee a;
     a.bookingId = e->nextBookingId++;
     strncpy(a.name, custName, MAX_NAME-1); a.name[MAX_NAME-1]=0;
@@ -80,11 +80,11 @@ bool book_ticket(Event *e, const char *custName, const char *email, int ticketTy
     a.ticketTypeIndex = ticketTypeIndex;
     a.seatNumber = -1;
 
-    // find first empty seat
+ 
     if (e->seatsBooked < e->capacity) {
         for (int i = 0; i < e->capacity; ++i) {
-            if (e->seats[i].bookingId == 0) {      // empty
-                a.seatNumber = i + 1;               // seats numbered 1..capacity
+            if (e->seats[i].bookingId == 0) {     
+                a.seatNumber = i + 1;              
                 e->seats[i] = a;
                 e->seatsBooked++;
                 e->revenue += price_of(e, ticketTypeIndex);
@@ -95,7 +95,7 @@ bool book_ticket(Event *e, const char *custName, const char *email, int ticketTy
         }
     }
 
-    // full -> go to waitlist
+    
     wait_push(e, a);
     if (outBookingId) *outBookingId = a.bookingId;
     if (outWaitlisted) *outWaitlisted = true;
@@ -103,7 +103,6 @@ bool book_ticket(Event *e, const char *custName, const char *email, int ticketTy
 }
 
 bool cancel_booking(Event *e, int bookingId) {
-    // find seat having this bookingId
     int pos = -1;
     for (int i = 0; i < e->capacity; ++i) {
         if (e->seats[i].bookingId == bookingId) { pos = i; break; }
@@ -113,11 +112,11 @@ bool cancel_booking(Event *e, int bookingId) {
         return false;
     }
 
-    // optional refund rule skipped (kept simple)
-    e->seats[pos].bookingId = 0;   // mark empty
+  
+    e->seats[pos].bookingId = 0;  
     e->seatsBooked--;
 
-    // promote one from waitlist, if any
+   
     Attendee next;
     if (wait_pop(e, &next)) {
         next.seatNumber = pos + 1;
