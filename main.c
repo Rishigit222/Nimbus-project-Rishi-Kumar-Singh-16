@@ -1,6 +1,5 @@
  #include "models.h"
 
-/* Very simple input helpers (scanf + buffer clear) */
 static void clear_line(void){ int c; while((c=getchar())!='\n' && c!=EOF){} }
 static void read_str(const char *label, char *buf, int size){
     printf("%s", label); fflush(stdout);
@@ -18,7 +17,6 @@ static double read_double(const char *label){
     if (scanf("%lf", &x)!=1) { x=0; } clear_line(); return x;
 }
 
-/* Seed with a few simple events */
 static void seed(Event events[], int *count){
     *count = 2;
 
