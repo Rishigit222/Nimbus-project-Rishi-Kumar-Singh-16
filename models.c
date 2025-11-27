@@ -1,7 +1,4 @@
 #include "models.h"
-
-/* -------- small helpers (simple & clear) -------- */
-
 static void wait_push(Event *e, Attendee a) {
     WaitNode n = (WaitNode)malloc(sizeof(WaitNode));
     if (!n) { fprintf(stderr, "Out of memory\n"); exit(1); }
