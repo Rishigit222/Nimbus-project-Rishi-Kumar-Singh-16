@@ -1,5 +1,4 @@
  #include "models.h"
-
 static void clear_line(void){ int c; while((c=getchar())!='\n' && c!=EOF){} }
 static void read_str(const char *label, char *buf, int size){
     printf("%s", label); fflush(stdout);
@@ -16,10 +15,8 @@ static double read_double(const char *label){
     double x; printf("%s", label); fflush(stdout);
     if (scanf("%lf", &x)!=1) { x=0; } clear_line(); return x;
 }
-
 static void seed(Event events[], int *count){
     *count = 2;
-
     init_event(&events[0], "Tech Fest", "2025-12-10", "Auditorium", 5);
     add_ticket_type(&events[0], "REG", 199);
     add_ticket_type(&events[0], "VIP", 499);
@@ -28,7 +25,6 @@ static void seed(Event events[], int *count){
     add_ticket_type(&events[1], "STU", 99);
     add_ticket_type(&events[1], "GST", 149);
 }
-
 static void create_event(Event events[], int *count){
     if (*count >= MAX_EVENTS){ printf("Event limit reached.\n"); return; }
     char name[MAX_NAME], date[MAX_DATE], venue[MAX_VENUE];
@@ -53,7 +49,6 @@ static void create_event(Event events[], int *count){
     printf("Event created with index %d.\n", *count);
     (*count)++;
 }
-
 static void do_book(Event events[], int count){
     if (count==0){ printf("No events.\n"); return; }
     print_all_events(events, count);
@@ -77,7 +72,6 @@ static void do_book(Event events[], int count){
         else            printf("Booked! Your Booking ID: %d\n", bid);
     }
 }
-
 static void do_cancel(Event events[], int count){
     if (count==0){ printf("No events.\n"); return; }
     print_all_events(events, count);
@@ -87,7 +81,6 @@ static void do_cancel(Event events[], int count){
     int bid = read_int("Enter Booking ID to cancel: ");
     if (cancel_booking(&events[idx], bid)) printf("Cancelled.\n");
 }
-
 static void do_report(Event events[], int count){
     if (count==0){ printf("No events.\n"); return; }
     print_all_events(events, count);
@@ -97,7 +90,6 @@ static void do_report(Event events[], int count){
     print_attendee_list(&events[idx]);
     print_waitlist(&events[idx]);
 }
-
 static void menu(void){
     printf("\n==== College Event Ticketing (Simple) ====\n");
     printf("1) List events\n");
@@ -107,7 +99,6 @@ static void menu(void){
     printf("5) Event report\n");
     printf("0) Exit\n");
 }
-
 int main(void){
     Event events[MAX_EVENTS];
     int count=0;
