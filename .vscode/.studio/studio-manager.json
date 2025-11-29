@@ -1,0 +1,24 @@
+{
+  "rules": [
+    {
+      "condition": "always",
+      "commandType": "vscode",
+      "command": "studio-manager.openFile main.c 1"
+    },
+    {
+      "condition": "always",
+      "commandType": "vscode",
+      "command": "studio-manager.openTerminal",
+      "cmdArgs": [
+        "gcc main.c && ./a.out",
+        {
+          "name": "c",
+          "location": {
+            "viewColumn": 2
+          }
+        }
+      ],
+      "delay": 2000
+    }
+  ]
+}
