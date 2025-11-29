@@ -1,6 +1,6 @@
 #include "models.h"
 static void wait_push(Event *e, Attendee a) {
-    WaitNode *n = (WaitNode *)malloc(sizeof(WaitNode));  /* FIXED */
+    WaitNode *n = (WaitNode *)malloc(sizeof(WaitNode));  
     if (!n) { fprintf(stderr, "Out of memory\n"); exit(1); }
     a.seatNumber = -1;
     n->data = a;
